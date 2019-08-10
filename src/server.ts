@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {deleteLocalFiles, filterImageFromURL} from './util/util';
-import {spawn} from "child_process";
 
 (async () => {
 
@@ -15,7 +14,7 @@ import {spawn} from "child_process";
   app.use(bodyParser.json());
 
   app.get("/filteredimage/", (req, res) => {
-      let {image_url} = req.query;
+      let image_url: string = req.query.image_url;
       if (!image_url) {
           return res.status(400)
               .send(`image_url is required`);
